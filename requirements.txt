@@ -1,7 +1,7 @@
 insightface==0.7.3
-onnx
-onnxruntime
+onnx>=1.14.0
+onnxruntime-gpu>=1.16.1  # GPU 환경 고려
 opencv-python
-numpy
+numpy>=1.22
 pillow
 tqdm

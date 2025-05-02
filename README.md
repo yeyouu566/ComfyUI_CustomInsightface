@@ -20,3 +20,11 @@ This is a custom ComfyUI node that uses [`insightface`](https://github.com/deepi
 ```bash
 cd ComfyUI/custom_nodes
 git clone https://github.com/yeyouu566/ComfyUI_CustomInsightface.git
+
+### 2. Install dependencies
+bash
+복사
+편집
+pip install -r ComfyUI/custom_nodes/ComfyUI_CustomInsightface/requirements.txt
+### 3. Restart ComfyUI
+ComfyUI will load this custom node on next launch.

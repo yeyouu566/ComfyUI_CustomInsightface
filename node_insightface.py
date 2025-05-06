@@ -1,5 +1,5 @@
 TYPE_CLASSES = {
-    "INSIGHTFACE": list
+    "INSIGHTFACE": list  # <- 여전히 필요
 }
 
 class InsightFaceLoader:
@@ -26,14 +26,9 @@ class InsightFaceLoader:
 
         faces = self.app.get(img)
 
-        face_infos = []
+        embeddings = []
         for face in faces:
-            face_infos.append({
-                "bbox": face.bbox.tolist() if face.bbox is not None else [],
-                "kps": face.kps.tolist() if face.kps is not None else [],
-                "gender": float(face.gender) if face.gender is not None else -1,
-                "age": float(face.age) if face.age is not None else -1,
-                "embedding": face.embedding.tolist() if face.embedding is not None else []
-            })
+            if face.embedding is not None:
+                embeddings.append(face.embedding.tolist())
 
-        return (face_infos,)
+        return (embeddings,)  # ✅ 오직 embedding만

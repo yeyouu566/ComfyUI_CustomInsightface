@@ -44,3 +44,12 @@ class InsightFaceLoader:
         ]
 
         return (embeddings,)
+
+NODE_CLASS_MAPPINGS = {
+    "CustomInsightface": InsightFaceLoader
+}
+
+NODE_DISPLAY_NAME_MAPPINGS = {
+    "CustomInsightface": "InsightFace 모델 분석기"
+}
+

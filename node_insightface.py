@@ -1,3 +1,7 @@
+from insightface.app import FaceAnalysis
+from PIL import Image
+import numpy as np
+
 class InsightFaceLoader:
     def __init__(self):
         self.app = None
@@ -6,9 +10,8 @@ class InsightFaceLoader:
     def INPUT_TYPES(cls):
         return {"required": {"image": ("IMAGE",)}}
 
-    RETURN_TYPES = ("INSIGHTFACE",)  # 🔧 대소문자 일치시킴
+    RETURN_TYPES = ("INSIGHTFACE",)
     FUNCTION = "analyze"
-
     CATEGORY = "face"
 
     def analyze(self, image):
@@ -22,4 +25,16 @@ class InsightFaceLoader:
             img = image
 
         faces = self.app.get(img)
-        return (faces,)
+
+        # ✅ ComfyUI에서 처리 가능한 형태로 변환
+        face_infos = []
+        for face in faces:
+            face_infos.append({
+                "bbox": face.bbox.tolist(),            # 얼굴 좌표
+                "kps": face.kps.tolist(),              # keypoints
+                "gender": face.gender,
+                "age": face.age,
+                "embedding": face.embedding.tolist()   # 벡터
+            })
+
+        return (face_infos,)

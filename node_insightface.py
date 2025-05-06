@@ -6,7 +6,7 @@ class InsightFaceLoader:
     def INPUT_TYPES(cls):
         return {"required": {"image": ("IMAGE",)}}
 
-    RETURN_TYPES = ("insightface",)  # 🔧 여기 이름을 IPAdapter가 요구하는 것과 동일하게!
+    RETURN_TYPES = ("INSIGHTFACE",)  # 🔧 대소문자 일치시킴
     FUNCTION = "analyze"
 
     CATEGORY = "face"
